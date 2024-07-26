@@ -2929,7 +2929,10 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 0a5aa56963492694ab334604345ab7b1, type: 3}
   - {fileID: 21300000, guid: 01330869007d69b4bae7ac2406615e65, type: 3}
   - {fileID: 21300000, guid: 7248e86959627864ab2f8f5a4d614d63, type: 3}
-  - {fileID: 21300000, guid: ad36607976771474885163ed2c4051cb, type: 3}
+  - {fileID: -300323461, guid: ad36607976771474885163ed2c4051cb, type: 3}
+  - {fileID: -323718780, guid: ad36607976771474885163ed2c4051cb, type: 3}
+  - {fileID: 744334382, guid: ad36607976771474885163ed2c4051cb, type: 3}
+  - {fileID: -721281695, guid: ad36607976771474885163ed2c4051cb, type: 3}
   - {fileID: 21300000, guid: c3bb037903cf32b4a98d6073ac586b92, type: 3}
   - {fileID: 21300000, guid: 456b13793e6254a488d581f1fdf6c0be, type: 3}
   - {fileID: 21300000, guid: 08ef5379e0e576547b6046a7670c54d2, type: 3}
@@ -7621,7 +7624,10 @@ SpriteAtlas:
   - button_unchecked_disabled
   - LuckUpgradeDisabled
   - Jump
-  - Idle
+  - Idle_0
+  - Idle_1
+  - Idle_2
+  - Idle_3
   - FacesetLioness2
   - SpriteSheet
   - Sprite
