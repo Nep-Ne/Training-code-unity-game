@@ -2345,6 +2345,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ad003e072bd2bc8419255458123ebd3c, type: 3}
   - {fileID: 21300000, guid: b203a21733cb41443bf05186f446da77, type: 3}
   - {fileID: 21300000, guid: eecae417aaba8a34cbe190c28168da0e, type: 3}
+  - {fileID: 21300000, guid: 3ffa3917b7dd1394b974222855c2599a, type: 3}
   - {fileID: 21300000, guid: 1992c9176ed2f82458a6f6b74ae387f5, type: 3}
   - {fileID: 21300000, guid: 8b18d917b4227ce4385ddb8d9f103909, type: 3}
   - {fileID: 21300000, guid: ec5efd173b91cd043adeefcd6519ff37, type: 3}
@@ -2353,7 +2354,8 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d44ed8277f3408e42845156e63abfc2f, type: 3}
   - {fileID: 21300000, guid: 3fd14037db45a2c408fe92af44d1bcfb, type: 3}
   - {fileID: 21300000, guid: 2d70f337948325346919ac4e4e073e6c, type: 3}
-  - {fileID: 21300000, guid: bf01d937787dc324cb3bbc5a73728b16, type: 3}
+  - {fileID: 1007949308, guid: bf01d937787dc324cb3bbc5a73728b16, type: 3}
+  - {fileID: -1228179844, guid: bf01d937787dc324cb3bbc5a73728b16, type: 3}
   - {fileID: 21300000, guid: e92f1d374aeb63f4999c6927f757c9f9, type: 3}
   - {fileID: 21300000, guid: 006ea547b7f5e224b856b102ed870e15, type: 3}
   - {fileID: 21300000, guid: ebc51f47684df5540b8bb0c3d26b4502, type: 3}
@@ -7040,6 +7042,7 @@ SpriteAtlas:
   - FacesetBrown
   - SpriteSheet
   - Talk
+  - Shuriken pronta
   - SpriteSheet
   - ShurikenMagic
   - Faceset
@@ -7048,7 +7051,8 @@ SpriteAtlas:
   - SpriteSheet
   - Faceset
   - SpriteSheet
-  - SpriteSheetBlack
+  - SpriteSheetBlack_1
+  - SpriteSheetBlack_0
   - Faceset
   - Slime3
   - Walk
