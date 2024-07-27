@@ -6,10 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     public float speed= 5f;
     private Animator animator;
+    private PlayerStat playerstat;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        playerstat = GetComponent<PlayerStat>();
     }
 
     // Update is called once per frame
@@ -36,5 +38,13 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Moving", false);
         }
             
+    }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.collider.tag=="enemy")
+        {
+            animator.SetTrigger("GetHurt");
+            playerstat.GetHurt();
+        }
     }
 }
