@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            direction = new Vector2(animator.GetFloat("MoveX"), animator.GetFloat("MoveY"));
+            
             ThrowProjectile(direction);
         }
 
@@ -38,11 +38,13 @@ public class PlayerController : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+        
         if (horizontal != 0 || vertical != 0)
         {
             rb.velocity = new Vector2(horizontal, vertical) * speed;
             animator.SetFloat("MoveX", horizontal);
             animator.SetFloat("MoveY", vertical);
+            direction = new Vector2(animator.GetFloat("MoveX"), animator.GetFloat("MoveY"));
             animator.SetBool("Moving", true);
         }
         else
