@@ -158,10 +158,10 @@ RectTransform:
   m_Father: {fileID: 982625623}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.01875, y: 0.9241569}
-  m_AnchorMax: {x: 0.26375002, y: 0.97969747}
-  m_AnchoredPosition: {x: 3.3432007, y: -4.01001}
-  m_SizeDelta: {x: 6.6863, y: 8.0201}
+  m_AnchorMin: {x: 0.0175, y: 0.9036549}
+  m_AnchorMax: {x: 0.26125002, y: 0.9760001}
+  m_AnchoredPosition: {x: -1.5, y: 2.4899902}
+  m_SizeDelta: {x: 7.6863003, y: -0.97990036}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &217984152
 MonoBehaviour:
@@ -8716,7 +8716,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 561935516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -1.84, y: -0.62, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11154,6 +11154,7 @@ GameObject:
   - component: {fileID: 982625621}
   - component: {fileID: 982625620}
   - component: {fileID: 982625624}
+  - component: {fileID: 982625625}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -11295,6 +11296,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &982625625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982625619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d09b267d7a4516248b71d030c3d3c506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stat: {fileID: 1144610257}
 --- !u!1 &994036112
 GameObject:
   m_ObjectHideFlags: 0
@@ -11444,7 +11458,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1144610250}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.84, y: -0.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11523,9 +11537,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0180abd58f223924e8a079841cb512be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 2
-  atk: 5
-  exp: 0
+  HP: 3
+  maxHP: 3
+  ATK: 5
+  EXP: 0
 --- !u!1 &1209100724
 GameObject:
   m_ObjectHideFlags: 0
@@ -11604,7 +11619,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1209100724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -1.84, y: -0.62, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
