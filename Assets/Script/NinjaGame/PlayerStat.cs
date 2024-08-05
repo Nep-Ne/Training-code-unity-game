@@ -4,31 +4,33 @@ using UnityEngine;
 
 public class PlayerStat : MonoBehaviour
 {
-    public float hp = 2;
-    public float atk = 5;
-    public float exp = 0;
+
+    public float HP=3f;
+    public float maxHP = 3f;
+    public float ATK = 5f;
+    public float EXP = 0f;
     //private Animator animator;
-    // Start is called before the first frame update
-    void Start()
-    {
-        // animator = GetComponent<Animator>();
-    }
 
-    // Update is called once per frame
-    void Update()
+    //public HealthBar healthbar;//gan gameobject nao co script HealthBar vao cai inspector script nay la ok!!!
+
+    //neu su dung cach Update healthbar ben script Healthbar thi doan code duoi khong can thiet !!!
+    //void Update()
+    //{
+    //    healthbar.SetHealth(HP);
+    //}
+
+
+    public void GetHurt(float damageAmount)
     {
 
-    }
+        HP = HP - damageAmount;
+       // animator.SetTrigger("GetHurt");
+        Debug.Log(HP);
 
-    public void GetHurt()
-    {
-        hp--;
-        // animator.SetTrigger("GetHurt");
-        // Debug.Log(hp);
     }
-    public void Recover()
+    public void Heal(float healAmount)
     {
-        hp++;
+        HP += healAmount;
     }
     public void Attack()
     {

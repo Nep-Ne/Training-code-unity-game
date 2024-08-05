@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
     public float speed = 7f;
     private Animator animator;
     private PlayerStat playerstat;
@@ -77,7 +78,7 @@ public class PlayerController : MonoBehaviour
         if (other.collider.tag == "enemy")
         {
             animator.SetTrigger("GetHurt");
-            playerstat.GetHurt();
+            playerstat.GetHurt(1);
         }
     }
 }

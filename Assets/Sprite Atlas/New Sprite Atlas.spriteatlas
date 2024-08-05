@@ -15,7 +15,7 @@ SpriteAtlas:
       compressionQuality: 50
       maxTextureSize: 2048
       textureCompression: 0
-      filterMode: 1
+      filterMode: 0
       generateMipMaps: 0
       readable: 0
       crunchedCompression: 0
@@ -1938,7 +1938,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 5e34b4352af52214fac3100e65f4738c, type: 3}
   - {fileID: 21300000, guid: bf9df73508488ba419f90cb39105b491, type: 3}
   - {fileID: 21300000, guid: 1415d9351c8ac254d9c4c68c71a7c437, type: 3}
-  - {fileID: 21300000, guid: 2d9431454a56998439f51dcf4824eb4f, type: 3}
+  - {fileID: -893475208, guid: 2d9431454a56998439f51dcf4824eb4f, type: 3}
   - {fileID: 21300000, guid: 15cb7445e2788f346a858a314e2aa1c9, type: 3}
   - {fileID: 21300000, guid: 7687f74561ad3ed48940da70a75f5d87, type: 3}
   - {fileID: 21300000, guid: be8fba45ff5f50841b5233b3f403d515, type: 3}
@@ -3780,6 +3780,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d0da033b15142094c9b95ec23c016ab3, type: 3}
   - {fileID: 21300000, guid: def5d93bc2fb24848901577036ffb553, type: 3}
   - {fileID: 21300000, guid: 3a0ad93b21366b240aebbb61e9a17976, type: 3}
+  - {fileID: 21300000, guid: 56169b3b5bba16c4c9b6b2832204e8ce, type: 3}
   - {fileID: 21300000, guid: c5842c3baa8e5d54fb83984b838b8ad7, type: 3}
   - {fileID: 21300000, guid: 0d611d3bfeab21c4fac4bc409a0a0bc5, type: 3}
   - {fileID: 21300000, guid: ae27f14ba81105845b10abc85cd35318, type: 3}
@@ -6635,7 +6636,7 @@ SpriteAtlas:
   - Dead
   - Special1
   - GoldCup
-  - nine_path_panel
+  - nine_path_panel_0
   - nine_path_panel_3
   - Dead
   - Special1
@@ -8477,6 +8478,7 @@ SpriteAtlas:
   - Attack
   - SpriteSheet
   - SpriteSheet
+  - nine_path_panel 1
   - BottomSheet16x16
   - Faceset
   - Faceset
