@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed= 5f;
+    public float speed= 6f;
     private Animator animator;
     private PlayerStat playerstat;
     // Start is called before the first frame update
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         if(other.collider.tag=="enemy")
         {
             animator.SetTrigger("GetHurt");
-            playerstat.GetHurt();
+            playerstat.GetHurt(1);
         }
     }
 }
