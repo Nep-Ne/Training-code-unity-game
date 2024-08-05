@@ -123,6 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+
 --- !u!1 &217984150
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,6 +202,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 217984150}
   m_CullTransparentMesh: 1
+
 --- !u!1 &411289413
 GameObject:
   m_ObjectHideFlags: 0
@@ -8722,7 +8724,7 @@ Transform:
   m_Children:
   - {fileID: 896594451}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &737873909
 GameObject:
@@ -11367,12 +11369,12 @@ GameObject:
   - component: {fileID: 1144610252}
   - component: {fileID: 1144610251}
   - component: {fileID: 1144610254}
-  - component: {fileID: 1144610255}
   - component: {fileID: 1144610256}
   - component: {fileID: 1144610257}
-  m_Layer: 0
+  - component: {fileID: 1144610258}
+  m_Layer: 6
   m_Name: TheBoy
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11486,19 +11488,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1144610255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1144610250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3b5b3c1a198b8b4a8b591bb9b87f53d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
 --- !u!61 &1144610256
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11541,6 +11530,21 @@ MonoBehaviour:
   maxHP: 3
   ATK: 5
   EXP: 0
+--- !u!114 &1144610258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144610250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b5b3c1a198b8b4a8b591bb9b87f53d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  ProjectilePrefab: {fileID: 2019810402}
+  force: 1000
 --- !u!1 &1209100724
 GameObject:
   m_ObjectHideFlags: 0
@@ -11811,5 +11815,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2019810402 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2213144478321512182, guid: 927bd2e923a053d4f957ef3b0c5ccd0c, type: 3}
+  m_PrefabInstance: {fileID: 311025106}
+  m_PrefabAsset: {fileID: 0}

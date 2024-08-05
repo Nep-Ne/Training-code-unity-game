@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerStat : MonoBehaviour
 {
+
     public float HP=3f;
     public float maxHP = 3f;
     public float ATK = 5f;
@@ -18,8 +19,10 @@ public class PlayerStat : MonoBehaviour
     //    healthbar.SetHealth(HP);
     //}
 
+
     public void GetHurt(float damageAmount)
     {
+
         HP = HP - damageAmount;
        // animator.SetTrigger("GetHurt");
         Debug.Log(HP);
