@@ -21,6 +21,7 @@ public class HealthBar : MonoBehaviour
     //ham Update nay khong can thiet neu nhu da su dung cai update ben PlayerStats !!
     void Update()
     {
+        SetMaxHealth(stat.maxHP);
         SetHealth(stat.HP);
     }
 
@@ -32,6 +33,7 @@ public class HealthBar : MonoBehaviour
 
     public void SetHealth(float HP)
     {
+        if (stat.HP > stat.maxHP) stat.HP = stat.maxHP;//dam bao current hp khong bao gio vuot qua maxhp
         Fill.value = HP;
     }
 }
