@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerStat : MonoBehaviour
 {
 
-    public float HP=3f;
-    public float maxHP = 3f;
+    public float HP=5f;
+    public float maxHP = 8f;
     public float ATK = 5f;
     public float EXP = 0f;
     //private Animator animator;
