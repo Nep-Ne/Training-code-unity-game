@@ -9,7 +9,7 @@ public class HealthBar : MonoBehaviour
     Slider Fill;
     //public GameObject player;
     //PlayerStat stat;
-    public PlayerStat stat;//gan gameobject co script PlayerStat la ok !!
+    public PlayerStat stat;//gan gameobject co component PlayerStat la ok !! (script cung la 1 component !!!)
     void Start()
     {
         Fill = GetComponent<Slider>();
