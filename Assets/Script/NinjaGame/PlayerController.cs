@@ -9,9 +9,12 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private PlayerStat playerstat;
     public GameObject ProjectilePrefab;
+    public Sprite Imageweapon;
+    public GameObject weapon;
     //public Transform PointProjectile;
     public float force = 10f;
-    Vector2 direction;
+    //direction dung dung ThrowProjectile()
+    //Vector2 direction;
     Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -19,7 +22,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         playerstat = GetComponent<PlayerStat>();
         rb = GetComponent<Rigidbody2D>();
-        direction = new Vector2(0, -1);
+        //direction = new Vector2(0, -1);
     }
 
     // Update is called once per frame
@@ -28,8 +31,10 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            
-            ThrowProjectile(direction);
+
+            //ThrowProjectile(direction);
+            weapon.GetComponent<SpriteRenderer>().sprite = Imageweapon;
+            MeleeAttack();
         }
 
     }
@@ -42,10 +47,16 @@ public class PlayerController : MonoBehaviour
         
         if (horizontal != 0 || vertical != 0)
         {
+            if(horizontal<0) animator.SetFloat("MoveX", -1);
+            if(horizontal>0) animator.SetFloat("MoveX", 1);
+            if(vertical>0) animator.SetFloat("MoveY", 1);
+            if (vertical < 0) animator.SetFloat("MoveY", -1);
+            if (horizontal == 0) animator.SetFloat("MoveX", 0);
+            if (vertical ==0 ) animator.SetFloat("MoveY", 0);
             rb.velocity = new Vector2(horizontal, vertical) * speed;
-            animator.SetFloat("MoveX", horizontal);
-            animator.SetFloat("MoveY", vertical);
-            direction = new Vector2(animator.GetFloat("MoveX"), animator.GetFloat("MoveY"));
+            //animator.SetFloat("MoveX", horizontal);
+            //animator.SetFloat("MoveY", vertical);
+            //direction = new Vector2(animator.GetFloat("MoveX"), animator.GetFloat("MoveY"));
             animator.SetBool("Moving", true);
         }
         else
@@ -64,7 +75,11 @@ public class PlayerController : MonoBehaviour
 
 
     }
+    void MeleeAttack()
+    {
+        animator.SetTrigger("Attack");
 
+    }
     void ThrowProjectile(Vector2 direction)
     {
         GameObject projectileObject = Instantiate(ProjectilePrefab, rb.position, Quaternion.identity);
