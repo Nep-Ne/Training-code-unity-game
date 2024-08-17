@@ -16,12 +16,17 @@ public class PlayerController : MonoBehaviour
     //direction dung dung ThrowProjectile()
     //Vector2 direction;
     Rigidbody2D rb;
+    float horizontal;
+    float vertical ;
     // Start is called before the first frame update
     void Start()
     {
+       
         animator = GetComponent<Animator>();
         playerstat = GetComponent<PlayerStat>();
         rb = GetComponent<Rigidbody2D>();
+        animator.SetFloat("MoveY", -1);
+        animator.SetFloat("MoveX", 0);
         //direction = new Vector2(0, -1);
     }
 
@@ -42,8 +47,8 @@ public class PlayerController : MonoBehaviour
     {
         //moveControl
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
         
         if (horizontal != 0 || vertical != 0)
         {
