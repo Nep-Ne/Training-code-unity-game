@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         playerstat = GetComponent<PlayerStat>();
         rb = GetComponent<Rigidbody2D>();
+        //them vao trang thai ban dau, neu thieu cai nay thi cai blendtree cua melee attack se o vi tri (0,0) va 
+        //vi tri nay rat khac thuong !!!!!!!
         animator.SetFloat("MoveY", -1);
         animator.SetFloat("MoveX", 0);
         //direction = new Vector2(0, -1);
