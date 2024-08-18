@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     public float speed = 4f;
+    public float health = 10f;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -49,6 +50,14 @@ public class EnemyController : MonoBehaviour
         //lam cho ke thu khong bi vang di sau khi bi dinh dan
         Destroy(gameObject.GetComponent<Rigidbody2D>());
         
+    }
+    public void TakeDamage(float dmg)
+    {
+        health -= dmg;
+        if(health<=0)
+        {
+            Death();
+        }
     }
     private void destroy()//su dung cho event tai sprite cuoi cung cua animation death
     {
