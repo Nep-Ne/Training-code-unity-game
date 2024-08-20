@@ -36,4 +36,5 @@ public class HealthBar : MonoBehaviour
         if (stat.HP > stat.maxHP) stat.HP = stat.maxHP;//dam bao current hp khong bao gio vuot qua maxhp
         Fill.value = HP;
     }
+
 }

@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
         //vi tri nay rat khac thuong !!!!!!!
         animator.SetFloat("MoveY", -1);
         animator.SetFloat("MoveX", 0);
+
+        //direction dung dung ThrowProjectile()
         //direction = new Vector2(0, -1);
     }
 
@@ -63,6 +65,8 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(horizontal, vertical) * speed;
             //animator.SetFloat("MoveX", horizontal);
             //animator.SetFloat("MoveY", vertical);
+
+            //direction dung dung ThrowProjectile()
             //direction = new Vector2(animator.GetFloat("MoveX"), animator.GetFloat("MoveY"));
             animator.SetBool("Moving", true);
         }

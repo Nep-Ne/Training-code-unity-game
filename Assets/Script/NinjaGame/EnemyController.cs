@@ -12,6 +12,9 @@ public class EnemyController : MonoBehaviour
     private Animator animator;
     public float speed = 4f;
     public float health = 10f;
+    public float maxhealth = 10f;
+    [SerializeField] private GameObject floatingText;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -55,7 +58,8 @@ public class EnemyController : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         health -= dmg;
-        if(health<=0)
+        ShowDamage(dmg);
+        if (health<=0)
         {
             Death();
         }
@@ -63,5 +67,11 @@ public class EnemyController : MonoBehaviour
     private void destroy()//su dung cho event tai sprite cuoi cung cua animation death
     {
         Destroy(gameObject);
+    }
+
+    public void ShowDamage(float dmg)
+    {
+        GameObject floatingDamge = Instantiate(floatingText, transform.position, Quaternion.identity);
+        floatingDamge.GetComponentInChildren<TextMesh>().text = dmg.ToString();
     }
 }

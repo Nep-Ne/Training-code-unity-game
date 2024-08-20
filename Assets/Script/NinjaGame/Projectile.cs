@@ -6,17 +6,21 @@ public class Projectile : MonoBehaviour
 {
 
 	public float MoveSpeed = 5.0f;
-	public GameObject user;
+	//bo doan nay vi prefab khong cho reference den gameobject cua scene !!
+	//public GameObject user;
 	string TagUser;
 	Rigidbody2D rb;
 	Collider2D collider;
-	//public GameObject user;
 	void Awake()
 	{
 		//cai nay dung cho awake chu ko duoc dung cho start, vi ben PlayerController se goi den script nay ma script nay chua enable thi lam sao
 		//lay gia tri rb !! Awake se thuc hien ke ca script nay ko duoc enable trong Player vi player can script nay lam gi!!!
 		//awake dung cho ca script ma gameobject muon su dung cac bien khoi tao script do ke ca khi script do ko phai la component cua gameobject do!!
 		rb = GetComponent<Rigidbody2D>();
+
+
+		//tuy tag user minh muon chon
+		GameObject user = GameObject.FindGameObjectWithTag("Player");
 		TagUser = user.GetComponent<Collider2D>().tag;
 		collider = GetComponent<Collider2D>();
 		Physics2D.IgnoreLayerCollision(gameObject.layer, user.layer);
