@@ -372,6 +372,7 @@ GameObject:
   - component: {fileID: 1010290506674859135}
   - component: {fileID: 1010290506674859134}
   - component: {fileID: 1010290506674859133}
+  - component: {fileID: 8643887650930040064}
   m_Layer: 0
   m_Name: RobotGreen
   m_TagString: enemy
@@ -527,7 +528,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b39aee0058c944f8c4629030b5513a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
   health: 10
   maxhealth: 10
   floatingText: {fileID: 3700327460841222965, guid: ca0acfa77507c474db04119f28f20f70, type: 3}
+--- !u!195 &8643887650930040064
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010290506674859132}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 2
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
