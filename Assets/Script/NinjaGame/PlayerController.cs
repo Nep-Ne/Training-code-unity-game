@@ -29,7 +29,8 @@ public class PlayerController : MonoBehaviour
         //vi tri nay rat khac thuong !!!!!!!
         animator.SetFloat("MoveY", -1);
         animator.SetFloat("MoveX", 0);
-
+        Debug.Log("Player transform:"+transform.position);
+        Debug.Log("Player localtransform:" + transform.localPosition);
         //direction dung dung ThrowProjectile()
         //direction = new Vector2(0, -1);
     }
