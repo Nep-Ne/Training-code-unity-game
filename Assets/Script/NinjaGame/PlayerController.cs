@@ -1,27 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+    enum Direction
+    {
+        Down,
+        Up,
+        Left,
+        Right
+    }
+    enum State
+    {
+        Idle,
+        Move,
+        Hurt,
+        Death
+    }
+    Direction playerDirection;
+    State playerState;
     public float speed = 7f;
     private Animator animator;
     private PlayerStat playerstat;
     public GameObject ProjectilePrefab;
     public Sprite Imageweapon;
     public GameObject weapon;
-    //public Transform PointProjectile;
     public float force = 10f;
-    //direction dung dung ThrowProjectile()
-    //Vector2 direction;
     Rigidbody2D rb;
     float horizontal;
     float vertical ;
     // Start is called before the first frame update
     void Start()
     {
-       
+       playerDirection= Direction.Down;
         animator = GetComponent<Animator>();
         playerstat = GetComponent<PlayerStat>();
         rb = GetComponent<Rigidbody2D>();
@@ -29,9 +42,8 @@ public class PlayerController : MonoBehaviour
         //vi tri nay rat khac thuong !!!!!!!
         animator.SetFloat("MoveY", -1);
         animator.SetFloat("MoveX", 0);
-
-        //direction dung dung ThrowProjectile()
-        //direction = new Vector2(0, -1);
+        Debug.Log("Player transform:"+transform.position);
+        Debug.Log("Player localtransform:" + transform.localPosition);
     }
 
     // Update is called once per frame
@@ -45,41 +57,70 @@ public class PlayerController : MonoBehaviour
             weapon.GetComponent<SpriteRenderer>().sprite = Imageweapon;
             MeleeAttack();
         }
+        //moveControl
+        rb = GetComponent<Rigidbody2D>();
+        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
+        //define direction Player
+        if (vertical > 0 && (Mathf.Abs(vertical) >= Mathf.Abs(horizontal)))// se khong smooth Li do: neu nhu cai abs(horizontal) dang > abs(vertical) va horizontal ==1 la direction dang la left
+            //roi den khi vertical==1 tu nhien no khung lai doi sang huong len tren do dau "=" !!!
+            //toi khong biet fix cai trai nghiem nguoi dung nay lam sao ca =((
+            playerDirection = Direction.Up;
+        else if (vertical < 0 && (Mathf.Abs(vertical) >= Mathf.Abs(horizontal)))
+            playerDirection = Direction.Down;
+        else if (horizontal > 0 && Mathf.Abs(vertical) < Mathf.Abs(horizontal))
+            playerDirection = Direction.Right;
+        else if (horizontal < 0 && Mathf.Abs(vertical) < Mathf.Abs(horizontal))
+            playerDirection = Direction.Left;
+        else if (horizontal == 0 && vertical == 0)
+            playerDirection = playerDirection;//neu nhu khong di chuyen thi lay direction truoc do !!!
 
+        //define state
+        if ((horizontal != 0 || vertical != 0) && playerstat.HP > 0)
+        {
+            playerState = State.Move;
+        }
+        else if ((horizontal == 0 && vertical == 0) && playerstat.HP > 0)
+        {
+            playerState = State.Idle;
+        }
+        else if (playerstat.HP <= 0)
+        {
+            playerState = State.Death;
+        }
+
+        //Update direction for animation Move,Idle
+        switch (playerDirection)
+        {
+            case Direction.Left:
+                animator.SetFloat("MoveX", -1);
+                animator.SetFloat("MoveY", 0);
+                break;
+            case Direction.Right:
+                animator.SetFloat("MoveX", 1);
+                animator.SetFloat("MoveY", 0);
+                break;
+            case Direction.Up:
+                animator.SetFloat("MoveX", 0);
+                animator.SetFloat("MoveY", 1);
+                break;
+            case Direction.Down:
+                animator.SetFloat("MoveX", 0);
+                animator.SetFloat("MoveY", -1);
+                break;
+        }
     }
     void FixedUpdate()
     {
-        //moveControl
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
         
-        if (horizontal != 0 || vertical != 0)
+        if (playerState == State.Move)
         {
-            if(horizontal<0) animator.SetFloat("MoveX", -1);
-            if(horizontal>0) animator.SetFloat("MoveX", 1);
-            if(vertical>0) animator.SetFloat("MoveY", 1);
-            if (vertical < 0) animator.SetFloat("MoveY", -1);
-            if (horizontal == 0) animator.SetFloat("MoveX", 0);
-            if (vertical ==0 ) animator.SetFloat("MoveY", 0);
             rb.velocity = new Vector2(horizontal, vertical) * speed;
-            //animator.SetFloat("MoveX", horizontal);
-            //animator.SetFloat("MoveY", vertical);
-
-            //direction dung dung ThrowProjectile()
-            //direction = new Vector2(animator.GetFloat("MoveX"), animator.GetFloat("MoveY"));
             animator.SetBool("Moving", true);
         }
-        else
+        else if (playerState == State.Idle)
         {
             rb.velocity = new Vector2(0, 0);
-            //bo dong code nay vao se ko giu lai huong cua nhan vat vi blendtree se cap nhat MoveX=0,MoveY=0 va ko giu trang thai cuoi cung => ko de
-            //huong nhan vat o lan cuoi cung di chuyen !!!
-
-            //animator.SetFloat("MoveX", horizontal);
-            //animator.SetFloat("MoveY", vertical);
-
-
             animator.SetBool("Moving", false);
         }
 

@@ -20,7 +20,7 @@ public class HeartSystem : MonoBehaviour
     {
         ConvertHPtoHeart(stat.maxHP, stat.HP);
         SetHeart(amountHeart, typeComplexHeart);
-        Debug.Log(amountFullHeart);
+        //Debug.Log(amountFullHeart);
 
     }
 
