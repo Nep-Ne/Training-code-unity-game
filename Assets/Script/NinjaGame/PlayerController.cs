@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
-    enum Direction
+
+    public enum Direction//phai public cai nay thi moi co the public playerDirection !!
     {
         Down,
         Up,
@@ -19,7 +21,7 @@ public class PlayerController : MonoBehaviour
         Hurt,
         Death
     }
-    Direction playerDirection;
+    public Direction playerDirection;
     State playerState;
     public float speed = 7f;
     private Animator animator;
@@ -31,6 +33,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     float horizontal;
     float vertical ;
+    public delegate void ChangeDirection(Direction playerDirect);
+    public event ChangeDirection EventPlayerChangeDirection;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,18 +66,34 @@ public class PlayerController : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         //define direction Player
-        if (vertical > 0 && (Mathf.Abs(vertical) >= Mathf.Abs(horizontal)))// se khong smooth Li do: neu nhu cai abs(horizontal) dang > abs(vertical) va horizontal ==1 la direction dang la left
-            //roi den khi vertical==1 tu nhien no khung lai doi sang huong len tren do dau "=" !!!
-            //toi khong biet fix cai trai nghiem nguoi dung nay lam sao ca =((
+        if (vertical > 0 && (Mathf.Abs(vertical) >= Mathf.Abs(horizontal)))
+        {
             playerDirection = Direction.Up;
+
+        }
+            
         else if (vertical < 0 && (Mathf.Abs(vertical) >= Mathf.Abs(horizontal)))
+        {
             playerDirection = Direction.Down;
+        }
+            
         else if (horizontal > 0 && Mathf.Abs(vertical) < Mathf.Abs(horizontal))
+        {
             playerDirection = Direction.Right;
+        }
+            
         else if (horizontal < 0 && Mathf.Abs(vertical) < Mathf.Abs(horizontal))
+        {
             playerDirection = Direction.Left;
+        }
         else if (horizontal == 0 && vertical == 0)
-            playerDirection = playerDirection;//neu nhu khong di chuyen thi lay direction truoc do !!!
+        {
+            playerDirection = playerDirection;
+        }
+
+        //Execute EventChangeDirection 
+        EventPlayerChangeDirection?.Invoke(playerDirection);
+
 
         //define state
         if ((horizontal != 0 || vertical != 0) && playerstat.HP > 0)
