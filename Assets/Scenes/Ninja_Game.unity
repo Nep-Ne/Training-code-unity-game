@@ -17541,6 +17541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b5b3c1a198b8b4a8b591bb9b87f53d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDirection: 0
   speed: 5
   ProjectilePrefab: {fileID: 8392623673914236040, guid: 927bd2e923a053d4f957ef3b0c5ccd0c, type: 3}
   Imageweapon: {fileID: 21300000, guid: 92e1eb5a838daf048a615457d1d7dec8, type: 3}
@@ -23849,7 +23850,7 @@ MeshRenderer:
   m_RenderingLayerMask: 3
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
+  - {fileID: -876546973899608171, guid: cda1ed0fddfee5d4db9a8a8ef6a673a6, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
