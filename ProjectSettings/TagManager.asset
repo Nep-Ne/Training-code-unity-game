@@ -16,9 +16,9 @@ TagManager:
   - obstacle
   - BehindMask
   - Black
-  - 
-  - 
-  - 
+  - Mask
+  - MainCamera
+  - MiniMap
   - 
   - 
   - 
