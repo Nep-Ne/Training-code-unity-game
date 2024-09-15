@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     float vertical ;
     public delegate void ChangeDirection(Direction playerDirect);
     public event ChangeDirection EventPlayerChangeDirection;
+    public RuntimeAnimatorController controller;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +54,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Transformation to RobotGreen animation !!
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            animator.runtimeAnimatorController = controller;
+        }
+
 
         if (Input.GetKeyDown(KeyCode.Space))
         {

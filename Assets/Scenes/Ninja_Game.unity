@@ -9898,6 +9898,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1010290506674859134, guid: 64acb740abbd4c84084b5ecd1b78927c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 8f10a7d354ef4084d9ade71d8bf3176c, type: 2}
     - target: {fileID: 1010290506674859135, guid: 64acb740abbd4c84084b5ecd1b78927c, type: 3}
       propertyPath: m_Interpolate
       value: 1
@@ -13034,9 +13038,9 @@ RectTransform:
   - {fileID: 851314435}
   - {fileID: 223905827}
   - {fileID: 1872403159}
+  - {fileID: 1575306327}
   - {fileID: 1701205096}
   - {fileID: 2034027658}
-  - {fileID: 1575306327}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -13686,6 +13690,7 @@ MonoBehaviour:
   Imageweapon: {fileID: 21300000, guid: 92e1eb5a838daf048a615457d1d7dec8, type: 3}
   weapon: {fileID: 880454838}
   force: 1000
+  controller: {fileID: 9100000, guid: 8f10a7d354ef4084d9ade71d8bf3176c, type: 2}
 --- !u!70 &1144610259
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -14322,7 +14327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
