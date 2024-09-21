@@ -25,6 +25,7 @@ public class square : MonoBehaviour
         {
             parry();
             Debug.Log("Pressed right click.");
+            rg2d.velocity = new Vector2(7f, 7f);
         }
         //if(cd )
     }
@@ -35,6 +36,8 @@ public class square : MonoBehaviour
         pos.x = pos.x + 7f * horizontal * Time.deltaTime;
         pos.y = pos.y + 7f * vertical * Time.deltaTime;
         rg2d.MovePosition(pos);
+        Debug.Log("Velocity" + rg2d.velocity.ToString());
+        rg2d.velocity = new Vector2(7f, 7f);
     }
     public bool IsAvailable = true;
     public float CooldownDuration = 1f;
@@ -64,7 +67,7 @@ public class square : MonoBehaviour
         else if(hp>0)
         {
             hp = hp - 1;
-            Debug.Log(hp);
+            Debug.Log("HP:"+hp.ToString());
         }
         else
         {
