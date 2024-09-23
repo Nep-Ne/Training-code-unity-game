@@ -33,9 +33,11 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     float horizontal;
     float vertical ;
-    public delegate void ChangeDirection(Direction playerDirect);
-    public event ChangeDirection EventPlayerChangeDirection;
     public RuntimeAnimatorController controller;
+    private GameObject PlayerLightFOV;
+    private GameObject PlayerLightAround;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +51,9 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("MoveX", 0);
         Debug.Log("Player transform:"+transform.position);
         Debug.Log("Player localtransform:" + transform.localPosition);
+        PlayerLightAround = GameObject.FindGameObjectWithTag("PlayerLightAround");
+        PlayerLightFOV = GameObject.FindGameObjectWithTag("PlayerLightFOV");
+
     }
 
     // Update is called once per frame
@@ -76,30 +81,35 @@ public class PlayerController : MonoBehaviour
         if (vertical > 0 && (Mathf.Abs(vertical) >= Mathf.Abs(horizontal)))
         {
             playerDirection = Direction.Up;
-
+            PlayerLightAround.transform.eulerAngles = Vector3.forward * 180;
+            PlayerLightFOV.transform.eulerAngles = Vector3.forward * 0;
         }
             
         else if (vertical < 0 && (Mathf.Abs(vertical) >= Mathf.Abs(horizontal)))
         {
             playerDirection = Direction.Down;
+            PlayerLightAround.transform.eulerAngles = Vector3.forward * 0;
+            PlayerLightFOV.transform.eulerAngles = Vector3.forward * 180;
         }
             
         else if (horizontal > 0 && Mathf.Abs(vertical) < Mathf.Abs(horizontal))
         {
             playerDirection = Direction.Right;
+            PlayerLightAround.transform.eulerAngles = Vector3.forward * 90;
+            PlayerLightFOV.transform.eulerAngles = Vector3.forward * 270;
         }
             
         else if (horizontal < 0 && Mathf.Abs(vertical) < Mathf.Abs(horizontal))
         {
             playerDirection = Direction.Left;
+            PlayerLightAround.transform.eulerAngles = Vector3.forward * 270;
+            PlayerLightFOV.transform.eulerAngles = Vector3.forward * 90;
         }
         else if (horizontal == 0 && vertical == 0)
         {
             playerDirection = playerDirection;
         }
 
-        //Execute EventChangeDirection 
-        EventPlayerChangeDirection?.Invoke(playerDirection);
 
 
         //define state

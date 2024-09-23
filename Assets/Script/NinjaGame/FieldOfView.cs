@@ -30,7 +30,7 @@ public class FieldOfView : MonoBehaviour
 
         //dung cho event !!!
         playerController = transform.parent.GetComponent<PlayerController>();
-        playerController.EventPlayerChangeDirection += CreateFOV;
+        //playerController.EventPlayerChangeDirection += CreateFOV;
 
     }
 
