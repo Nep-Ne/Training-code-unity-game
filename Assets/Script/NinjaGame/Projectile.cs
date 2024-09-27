@@ -5,7 +5,6 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
 
-	public float MoveSpeed = 5.0f;
 	//bo doan nay vi prefab khong cho reference den gameobject cua scene !!
 	//public GameObject user;
 	string TagUser;
@@ -59,11 +58,10 @@ public class Projectile : MonoBehaviour
 		if (!other.collider.CompareTag(TagUser))
 		{
 			Destroy(gameObject);
-			if (other.collider.CompareTag("enemy"))
+			if (other.collider.CompareTag("enemy") || other.collider.CompareTag("Boss"))
 			{
 
-				Destroy(gameObject);
-				other.gameObject.GetComponent<EnemyController>().Death();
+				//other.gameObject.GetComponent<EnemyController>().Death();
 
 			}
 		}

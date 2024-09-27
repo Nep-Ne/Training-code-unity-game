@@ -8,6 +8,7 @@ TagManager:
   - PlayerLightAround
   - PlayerLightFOV
   - Pistol
+  - Boss
   layers:
   - Default
   - TransparentFX

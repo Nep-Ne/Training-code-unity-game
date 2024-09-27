@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.runtimeAnimatorController = controller;
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(1))
         {
 
             //ThrowProjectile(new Vector2(1,0));
@@ -78,6 +78,10 @@ public class PlayerController : MonoBehaviour
             Shooting();
         }
 
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+
+        }
         //
 
 
