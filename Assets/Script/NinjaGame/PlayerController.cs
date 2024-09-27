@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http.Headers;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PlayerController : MonoBehaviour
 {
@@ -29,14 +30,14 @@ public class PlayerController : MonoBehaviour
     public GameObject ProjectilePrefab;
     public Sprite Imageweapon;
     public GameObject weapon;
-    public float force = 10f;
+    public float force = 10000f;
     Rigidbody2D rb;
     float horizontal;
     float vertical ;
     public RuntimeAnimatorController controller;
     private GameObject PlayerLightFOV;
     private GameObject PlayerLightAround;
-
+    
 
     // Start is called before the first frame update
     void Start()
@@ -53,65 +54,91 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Player localtransform:" + transform.localPosition);
         PlayerLightAround = GameObject.FindGameObjectWithTag("PlayerLightAround");
         PlayerLightFOV = GameObject.FindGameObjectWithTag("PlayerLightFOV");
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        //action
+
         //Transformation to RobotGreen animation !!
         if(Input.GetKeyDown(KeyCode.X))
         {
             animator.runtimeAnimatorController = controller;
         }
-
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
 
-            //ThrowProjectile(direction);
+            //ThrowProjectile(new Vector2(1,0));
             weapon.GetComponent<SpriteRenderer>().sprite = Imageweapon;
             MeleeAttack();
         }
-        //moveControl
-        rb = GetComponent<Rigidbody2D>();
+        if (Input.GetMouseButtonDown(0))
+        {
+            Shooting();
+        }
+
+        //
+
+
+        //Direction
+        DirectionController();
+
+        //state
+        StateController();
+
+
+        //Update direction for animation Move,Idle
+        AnimationDirectionController();
+    }
+    void FixedUpdate()
+    {
+
+        ActionController(playerState);
+
+
+
+    }
+    void DirectionController()
+    {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         //define direction Player
         if (vertical > 0 && (Mathf.Abs(vertical) >= Mathf.Abs(horizontal)))
         {
             playerDirection = Direction.Up;
-            PlayerLightAround.transform.eulerAngles = Vector3.forward * 180;
-            PlayerLightFOV.transform.eulerAngles = Vector3.forward * 0;
+            LightController(Direction.Up);
+            PistolDirection(playerDirection);
         }
-            
+
         else if (vertical < 0 && (Mathf.Abs(vertical) >= Mathf.Abs(horizontal)))
         {
             playerDirection = Direction.Down;
-            PlayerLightAround.transform.eulerAngles = Vector3.forward * 0;
-            PlayerLightFOV.transform.eulerAngles = Vector3.forward * 180;
+            LightController(Direction.Down);
+            PistolDirection(playerDirection);
         }
-            
+
         else if (horizontal > 0 && Mathf.Abs(vertical) < Mathf.Abs(horizontal))
         {
             playerDirection = Direction.Right;
-            PlayerLightAround.transform.eulerAngles = Vector3.forward * 90;
-            PlayerLightFOV.transform.eulerAngles = Vector3.forward * 270;
+            LightController(Direction.Right);
+            PistolDirection(playerDirection);
         }
-            
+
         else if (horizontal < 0 && Mathf.Abs(vertical) < Mathf.Abs(horizontal))
         {
             playerDirection = Direction.Left;
-            PlayerLightAround.transform.eulerAngles = Vector3.forward * 270;
-            PlayerLightFOV.transform.eulerAngles = Vector3.forward * 90;
+            LightController(Direction.Left);
+            PistolDirection(playerDirection);
         }
         else if (horizontal == 0 && vertical == 0)
         {
             playerDirection = playerDirection;
         }
+    }
 
-
-
+    void StateController()
+    {
         //define state
         if ((horizontal != 0 || vertical != 0) && playerstat.HP > 0)
         {
@@ -125,8 +152,60 @@ public class PlayerController : MonoBehaviour
         {
             playerState = State.Death;
         }
+    }
 
-        //Update direction for animation Move,Idle
+    void ActionController(State statePlayer)
+    {
+        if (statePlayer == State.Move)
+        {
+            MoveController();
+        }
+        else if (statePlayer == State.Idle)
+        {
+            IdleController();
+        }
+    }
+
+    void MoveController()
+    {
+        rb.velocity = new Vector2(horizontal, vertical) * speed;
+        animator.SetBool("Moving", true);
+    }
+
+    void IdleController()
+    {
+        rb.velocity = new Vector2(0, 0);
+        animator.SetBool("Moving", false);
+    }
+
+    void LightController(Direction direction)
+    {
+        if(PlayerLightFOV !=null && PlayerLightAround !=null)
+        {
+            switch (direction)
+            {
+                case Direction.Left:
+                    PlayerLightAround.transform.eulerAngles = Vector3.forward * 270;
+                    PlayerLightFOV.transform.eulerAngles = Vector3.forward * 90;
+                    break;
+                case Direction.Right:
+                    PlayerLightAround.transform.eulerAngles = Vector3.forward * 90;
+                    PlayerLightFOV.transform.eulerAngles = Vector3.forward * 270;
+                    break;
+                case Direction.Up:
+                    PlayerLightAround.transform.eulerAngles = Vector3.forward * 180;
+                    PlayerLightFOV.transform.eulerAngles = Vector3.forward * 0;
+                    break;
+                case Direction.Down:
+                    PlayerLightAround.transform.eulerAngles = Vector3.forward * 0;
+                    PlayerLightFOV.transform.eulerAngles = Vector3.forward * 180;
+                    break;
+            }
+        }
+    }
+
+    void AnimationDirectionController()
+    {
         switch (playerDirection)
         {
             case Direction.Left:
@@ -147,23 +226,7 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
-    void FixedUpdate()
-    {
-        
-        if (playerState == State.Move)
-        {
-            rb.velocity = new Vector2(horizontal, vertical) * speed;
-            animator.SetBool("Moving", true);
-        }
-        else if (playerState == State.Idle)
-        {
-            rb.velocity = new Vector2(0, 0);
-            animator.SetBool("Moving", false);
-        }
 
-
-
-    }
     void MeleeAttack()
     {
         animator.SetTrigger("Attack");
@@ -177,6 +240,57 @@ public class PlayerController : MonoBehaviour
         projectile.Throw(direction, force);
     }
 
+    void Interact()
+    {
+
+    }
+    void PickUp()
+    {
+
+    }    
+
+
+    void Shooting()
+    {
+        GameObject pistol = GameObject.FindGameObjectWithTag("Pistol");
+        pistol.GetComponent<PistolController>().Shoot();
+        
+    }
+    void PistolDirection(Direction playerdirection)
+    {
+        GameObject pistol = GameObject.FindGameObjectWithTag("Pistol");
+        if (playerdirection == Direction.Right)
+        {
+            pistol.transform.position = new Vector2(transform.position.x + 0.74f, transform.position.y + 0.01f);
+            pistol.GetComponent<SpriteRenderer>().flipY = false;
+            //cai transform ben trong vector2 la transform cua Player !!!
+            pistol.transform.eulerAngles = Vector3.forward * 0;
+
+        }
+        else if (playerdirection == Direction.Up)
+        {
+            pistol.transform.position = new Vector2(transform.position.x, transform.position.y + 0.74f);
+            pistol.GetComponent<SpriteRenderer>().flipY = false;
+            pistol.transform.eulerAngles = Vector3.forward * 90;
+
+
+        }
+        else if (playerdirection == Direction.Down)
+        {
+            pistol.transform.position = new Vector2(transform.position.x, transform.position.y - 0.74f);
+            pistol.GetComponent<SpriteRenderer>().flipY = false;
+            pistol.transform.eulerAngles = Vector3.forward * 270;
+
+
+        }
+        else if (playerdirection == Direction.Left)
+        {
+            pistol.transform.position = new Vector2(transform.position.x - 0.74f, transform.position.y + 0.01f);
+            pistol.transform.eulerAngles = Vector3.forward * 180;
+            pistol.GetComponent<SpriteRenderer>().flipY = true;
+
+        }
+    }
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.collider.tag == "enemy")

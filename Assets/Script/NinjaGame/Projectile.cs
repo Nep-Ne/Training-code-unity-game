@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
 		GameObject user = GameObject.FindGameObjectWithTag("Player");
 		TagUser = user.GetComponent<Collider2D>().tag;
 		collider = GetComponent<Collider2D>();
-		Physics2D.IgnoreLayerCollision(gameObject.layer, user.layer);
+		//Physics2D.IgnoreLayerCollision(gameObject.layer, user.layer);
 	}
 
 	void Update()
@@ -40,6 +40,18 @@ public class Projectile : MonoBehaviour
 		rb.AddForce(direction.normalized * force);
 
 	}
+
+	//su dung Physics2D.IgnoreCollision
+	void OnEnable()
+	{
+		GameObject[] otherObjects = GameObject.FindGameObjectsWithTag("Player");
+
+		foreach (GameObject obj in otherObjects)
+		{
+			Physics2D.IgnoreCollision(obj.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            //cai GetComponent<Collider2D>() o phia sau <=> gameObject.GetComponent<Collider2D>())
+        }
+    }
 
 	private void OnCollisionEnter2D(Collision2D other)
 	{
@@ -60,13 +72,20 @@ public class Projectile : MonoBehaviour
 
 		{
 
-			//Physics2D.IgnoreCollision(collider, other.collider);
-			//ko bi con bi block lai nhung van khi va cham van gay force len nhau !!!
-			//Physics2D.IgnoreLayerCollision(gameObject.layer, user.layer); thi moi co the ignore luon ca cai force !!!
-		}
-	}
+            //Physics2D.IgnoreCollision(collider, other.collider);
+            //ko bi con bi block lai nhung van khi va cham van gay force len nhau !!! Li do cai event OnCollisionEnter2D duoc thuc hien
+            //cham hon !!! The nen khi dung Physics2D.IgnoreCollision thi ta nen goi no trong OnEnable() duoc su dung phia tren !!!
+
+
+            //Physics2D.IgnoreLayerCollision(gameObject.layer, user.layer); thi moi co the ignore luon ca cai force, no chinh la
+            //cai thay doi Matrix collision trong Project Setting!!!!
+        }
+    }
+
 	//public float Damage()
 	//{ 
 	//	return 
 	//}
 }
+
+

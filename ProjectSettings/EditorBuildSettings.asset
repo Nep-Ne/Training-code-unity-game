@@ -8,13 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ninja_menu.unity
     guid: 4e2bacd659296294a9b66cdfca223cc0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Ninja_Game.unity
     guid: 312073906af924e4d8117e86d229f5ae
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Choose_game.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Beginer_project.unity
     guid: 3ed07905c4527e146aad6d38151c5fd2
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: 656b4395a18f8d44ab788e1718e6b1f4
   m_configObjects: {}
