@@ -243,57 +243,54 @@ public class PlayerController : MonoBehaviour
         Debug.Log(direction);
         projectile.Throw(direction, force);
     }
-
-    void Interact()
-    {
-
-    }
-    void PickUp()
-    {
-
-    }    
-
-
+ 
     void Shooting()
     {
         GameObject pistol = GameObject.FindGameObjectWithTag("Pistol");
-        pistol.GetComponent<PistolController>().Shoot();
+        if (pistol != null)
+        {
+            pistol.GetComponent<PistolController>().Shoot();
+        }
         
     }
     void PistolDirection(Direction playerdirection)
     {
         GameObject pistol = GameObject.FindGameObjectWithTag("Pistol");
-        if (playerdirection == Direction.Right)
+        if(pistol!=null)
         {
-            pistol.transform.position = new Vector2(transform.position.x + 0.74f, transform.position.y + 0.01f);
-            pistol.GetComponent<SpriteRenderer>().flipY = false;
-            //cai transform ben trong vector2 la transform cua Player !!!
-            pistol.transform.eulerAngles = Vector3.forward * 0;
+            if (playerdirection == Direction.Right)
+            {
+                pistol.transform.position = new Vector2(transform.position.x + 0.74f, transform.position.y + 0.01f);
+                pistol.GetComponent<SpriteRenderer>().flipY = false;
+                //cai transform ben trong vector2 la transform cua Player !!!
+                pistol.transform.eulerAngles = Vector3.forward * 0;
 
+            }
+            else if (playerdirection == Direction.Up)
+            {
+                pistol.transform.position = new Vector2(transform.position.x, transform.position.y + 0.74f);
+                pistol.GetComponent<SpriteRenderer>().flipY = false;
+                pistol.transform.eulerAngles = Vector3.forward * 90;
+
+
+            }
+            else if (playerdirection == Direction.Down)
+            {
+                pistol.transform.position = new Vector2(transform.position.x, transform.position.y - 0.74f);
+                pistol.GetComponent<SpriteRenderer>().flipY = false;
+                pistol.transform.eulerAngles = Vector3.forward * 270;
+
+
+            }
+            else if (playerdirection == Direction.Left)
+            {
+                pistol.transform.position = new Vector2(transform.position.x - 0.74f, transform.position.y + 0.01f);
+                pistol.transform.eulerAngles = Vector3.forward * 180;
+                pistol.GetComponent<SpriteRenderer>().flipY = true;
+
+            }
         }
-        else if (playerdirection == Direction.Up)
-        {
-            pistol.transform.position = new Vector2(transform.position.x, transform.position.y + 0.74f);
-            pistol.GetComponent<SpriteRenderer>().flipY = false;
-            pistol.transform.eulerAngles = Vector3.forward * 90;
-
-
-        }
-        else if (playerdirection == Direction.Down)
-        {
-            pistol.transform.position = new Vector2(transform.position.x, transform.position.y - 0.74f);
-            pistol.GetComponent<SpriteRenderer>().flipY = false;
-            pistol.transform.eulerAngles = Vector3.forward * 270;
-
-
-        }
-        else if (playerdirection == Direction.Left)
-        {
-            pistol.transform.position = new Vector2(transform.position.x - 0.74f, transform.position.y + 0.01f);
-            pistol.transform.eulerAngles = Vector3.forward * 180;
-            pistol.GetComponent<SpriteRenderer>().flipY = true;
-
-        }
+        
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
