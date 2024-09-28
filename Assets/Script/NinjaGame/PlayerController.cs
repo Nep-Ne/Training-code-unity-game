@@ -168,6 +168,10 @@ public class PlayerController : MonoBehaviour
         {
             IdleController();
         }
+        else if(statePlayer == State.Death)
+        {
+            DeathAnimation();
+        }
     }
 
     void MoveController()
@@ -234,7 +238,11 @@ public class PlayerController : MonoBehaviour
     void MeleeAttack()
     {
         animator.SetTrigger("Attack");
+    }
 
+    void DeathAnimation()
+    {
+        animator.SetBool("Death", true);
     }
     void ThrowProjectile(Vector2 direction)
     {
@@ -292,12 +300,12 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.collider.tag == "enemy")
-        {
-            animator.SetTrigger("GetHurt");
-            playerstat.GetHurt(1);
-        }
-    }
+    //private void OnCollisionEnter2D(Collision2D other)
+    //{
+    //    if (other.collider.tag == "enemy")
+    //    {
+    //        animator.SetTrigger("GetHurt");
+    //        playerstat.GetHurt(1);
+    //    }
+    //}
 }

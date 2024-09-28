@@ -9,7 +9,6 @@ public class PlayerStat : MonoBehaviour
     public float maxHP = 8f;
     public float ATK = 5f;
     public float EXP = 0f;
-    //private Animator animator;
 
     //public HealthBar healthbar;//gan gameobject nao co script HealthBar vao cai inspector script nay la ok!!!
 
@@ -24,7 +23,7 @@ public class PlayerStat : MonoBehaviour
     {
 
         HP = HP - damageAmount;
-       // animator.SetTrigger("GetHurt");
+        gameObject.GetComponent<Animator>().SetTrigger("GetHurt");
         Debug.Log(HP);
 
     }

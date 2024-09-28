@@ -62,7 +62,7 @@ public class Projectile : MonoBehaviour
 			{
 
 				//other.gameObject.GetComponent<EnemyController>().Death();
-
+				
 			}
 		}
 
