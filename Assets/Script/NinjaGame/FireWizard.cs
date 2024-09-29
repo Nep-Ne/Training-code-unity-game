@@ -5,32 +5,43 @@ using UnityEngine;
 
 public class FireWizard : MonoBehaviour
 {
-    float HP=30f;
+    float HP=10f;
+    public bool IsDeath;
     GameObject player;
+    IEnumerator couroutine;
     //public GameObject Fire;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("TheBoy");
-        StartCoroutine(Action(player.GetComponent<Transform>()));
+        IsDeath = false;
+        couroutine = Action(player.GetComponent<Transform>());
+        StartCoroutine(couroutine);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //co the dung cach kiem tra va thuc hien Death ngay ben trong Hurt() !!!
+        if(HP<=0)
+        {
+            StopCoroutine(couroutine);
+            Death();
+            Debug.Log("Death");
+        }
     }
 
     IEnumerator Action(Transform PlayerTrans)
     {
-        while (HP>=0)
+        while (HP>0)
         {
+            yield return new WaitForSeconds(1f);
             Move(PlayerTrans);
             yield return new WaitForSeconds(1f);
             Attack(PlayerTrans);
-            yield return new WaitForSeconds(1f);
+            
         }
-        yield return null;
+        
     }
 
     private void Move(Transform PlayerTrans)
@@ -67,6 +78,23 @@ public class FireWizard : MonoBehaviour
     {
         HP--;
         Debug.Log(HP);
+        //if (HP <= 0)
+        //{
+        //    Death();
+        //    StopCoroutine(couroutine);
+        //}
+    }
+
+    public void Death()
+    {
+        IsDeath = true;
+        GetComponent<Animator>().SetTrigger("Death");//loop time cua animation clip phai tat !!!
+        //GetComponent<Animator>().SetBool("Death",true);
+        GetComponent<Collider2D>().enabled = false;
+
+        this.enabled = false;//tat cai script nay !!
+        //Cai nay co cung duoc, khong cung duoc nhung tuong minh thi nen co ,dam bao rang cai script khong hoat dong va
+        //cai upadate() cua no khong hoat dong nua !!!
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
