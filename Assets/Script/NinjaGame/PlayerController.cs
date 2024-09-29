@@ -171,6 +171,9 @@ public class PlayerController : MonoBehaviour
         else if(statePlayer == State.Death)
         {
             DeathAnimation();
+            GameObject.Find("GameManager").GetComponent<GameOverMenu>().ActiveGameOver();
+            rb.velocity = new Vector2(0, 0);
+            
         }
     }
 
