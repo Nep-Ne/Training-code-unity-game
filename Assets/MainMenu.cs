@@ -9,4 +9,19 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public void quit()
+    {
+        Application.Quit();
+
+    }
+    public void Back(GameObject thisGameObject)
+    {
+        thisGameObject.SetActive(false);
+    }
+
+    public void OpenTutorial(GameObject tutorialObject)
+    {
+        tutorialObject.SetActive(true);
+    }
 }
