@@ -5,12 +5,14 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
+    public GameObject Backround_PauseMenu;
     public bool isPause;
     private AudioSource[] allAudioSources;
 
     private void Start()
     {
         pauseMenu.SetActive(false);
+        Backround_PauseMenu.SetActive(false);
         isPause = false;
     }
     private void Update()
@@ -26,6 +28,7 @@ public class PauseMenu : MonoBehaviour
     public void pause()
     {
         pauseMenu.SetActive(true);
+        Backround_PauseMenu.SetActive(true);
         isPause = true;
         StopAllAudio();
         Time.timeScale = 0f;
@@ -33,6 +36,7 @@ public class PauseMenu : MonoBehaviour
     public void resume()
     {
         pauseMenu.SetActive(false);
+        Backround_PauseMenu.SetActive(false);
         isPause = false;
         Time.timeScale = 1f;
         ResumeAllAudio();
