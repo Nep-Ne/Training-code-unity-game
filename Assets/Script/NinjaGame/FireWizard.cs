@@ -5,14 +5,19 @@ using UnityEngine;
 
 public class FireWizard : MonoBehaviour
 {
+    [ColorUsage(true,true)]//2 dong nay phai dung ke nhau !!!
+    [SerializeField] Color FlashColor;
     float HP=10f;
     public bool IsDeath;
     GameObject player;
     IEnumerator couroutine;
+    private Material material;
+    [SerializeField] float Flashamount;
     //public GameObject Fire;
     // Start is called before the first frame update
     void Start()
     {
+        material=GetComponent<SpriteRenderer>().material;
         player = GameObject.Find("TheBoy");
         IsDeath = false;
         couroutine = Action(player.GetComponent<Transform>());
@@ -83,6 +88,15 @@ public class FireWizard : MonoBehaviour
         //    Death();
         //    StopCoroutine(couroutine);
         //}
+        StartCoroutine(FlashEffect());
+    }
+
+    IEnumerator FlashEffect()
+    {
+        material.SetColor("_FlashColor", FlashColor);
+        material.SetFloat("_FlashAmount", Flashamount);
+        yield return new WaitForSeconds(0.2f);
+        material.SetFloat("_FlashAmount", 0);
     }
 
     public void Death()
